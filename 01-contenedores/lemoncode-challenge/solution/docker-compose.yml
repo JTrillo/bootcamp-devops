@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+    frontendcito:
+        image: lemoncode-challenge-frontend
+        environment: 
+            - REACT_APP_API_URL=http://localhost:5000/api/topics
+        ports:
+            - "3000:3000"
+    backendcito:
+        image: lemoncode-challenge-backend
+        environment: 
+            - MONGO_URI=mongodb://monguito:27017
+        ports:
+            - "5000:5000"
+        networks: 
+            - lemoncode-challenge
+    monguito:
+        image: mongo
+        networks: 
+            - lemoncode-challenge
+        volumes:
+            - mongo-volumen:/data/db
+volumes:
+    mongo-volumen:
+networks:
+    lemoncode-challenge:
