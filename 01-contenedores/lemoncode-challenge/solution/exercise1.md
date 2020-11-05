@@ -59,4 +59,5 @@ db.Topics.insert({
 exit
 ```
 3. Ir a la url localhost:3000 para verificar
+
 ![](./resources/result.png)
