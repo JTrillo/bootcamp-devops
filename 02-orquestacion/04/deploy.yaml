@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: deberes4-deploy
+  name: deberes4-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: deberes4-deploy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: deberes4-deploy
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: deberes4-cm
+        - secretRef:
+            name: deberes4-secret
+        image: lemoncodersbc/showinfo:v1
+        name: showinfo
+        resources: {}
+status: {}
