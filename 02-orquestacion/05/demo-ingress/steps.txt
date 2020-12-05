@@ -1,0 +1,10 @@
+# Crear los deployments
+kubectl create deploy web --image lemoncodersbc/hello-world-web:v1 --replicas 2 -o yaml --dry-run=client > web.yaml
+kubectl create deploy api --image lemoncodersbc/go-hello-world --replicas 3 -o yaml --dry-run=client > api.yaml
+kubectl create -f web.yaml
+kubectl create -f api.yaml
+# Crear los servicios para cada deployment
+kubectl expose deploy/web --port 3000 --name web --dry-run=client -o yaml > web-svc.yaml
+kubectl expose deploy/api --port 80 --target-port 3000 --name api --dry-run=client -o yaml > api-svc.yaml
+kubectl create -f web-svc.yaml
+kubectl create -f api-svc.yaml
