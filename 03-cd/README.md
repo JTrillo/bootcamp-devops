@@ -1,0 +1,1 @@
+Other Jenkins exercises are [here](https://github.com/JTrillo/jenkins-sessions)
