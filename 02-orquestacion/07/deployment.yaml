@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: liveready
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: liveready
+  template:
+    metadata:
+      labels:
+        app: liveready
+    spec:
+      containers:
+      - name: main
+        image: lemoncodersbc/liveready
+        livenessProbe:
+          initialDelaySeconds: 20 # Tiempo hasta la primera prueba
+          periodSeconds: 60 # Tiempo entre pruebas, cuanto más pequeño, más sobrecarga
+          timeoutSeconds: 1 # Tiempo que se espera a la prueba
+          failureThreshold: 1 # Cuantas veces tiene que fallar
+          successThreshold: 3 # Cuantas veces tiene que ser exitosa
+          httpGet:
+            path: /health
+            port: 80
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 80
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: liveready
+spec:
+  selector:
+    app: liveready
+  ports:
+  - port: 80
+    targetPort: 80
+    name: http
