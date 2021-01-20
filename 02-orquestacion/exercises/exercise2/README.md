@@ -100,6 +100,8 @@ kubectl create -f ingress-api.yaml
 3. Edit hosts file (/etc/hosts or C:\windows\system32\drivers\etc\hosts) to include ingress IP
 
 ![](./resources/exercise2_1.png)
+
+
 As we can see in the picture, my ingress IP is 172.17.0.2.
 
 ```bash
