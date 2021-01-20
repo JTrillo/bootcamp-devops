@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: todo-app
+  name: todo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: todo-app
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: cm-monolith
+        image: jtrillo/monolith
+        name: monolith
+        resources: {}
+status: {}
