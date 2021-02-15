@@ -1,0 +1,14 @@
+name: 'Hello - JavaScript'
+description: 'JavaScript action type'
+author: 'Joaquin Trillo'
+
+inputs:
+  whoToGreet:
+    description: 'Who to greet'
+    required: true
+outputs:
+  time:
+    description: 'The time I greeted you'
+runs:
+  using: 'node12'
+  main: 'index.js'
